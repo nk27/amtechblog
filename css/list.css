@@ -48,6 +48,10 @@ li div.tags {
     font-size: 0.8rem;
 }
 
+li div.tags a {
+    padding-bottom: 1.2rem;
+}
+
 li a {
     display: inline-block;
     text-decoration: none;

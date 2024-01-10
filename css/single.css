@@ -47,7 +47,7 @@ div.tags a {
     font-size: 0.6rem;
     margin-right: 5px;
     margin-bottom: 5px;
-    padding-bottom: 5px;
+    padding-bottom: 1.0em;
 }
 
 .tag {
@@ -119,6 +119,7 @@ div.tags a {
 }
 
 @media (max-width: 600px) {
+
     .article pre {
         font-size: 0.8rem;
     }
@@ -129,7 +130,8 @@ div.tags a {
 
     .article {
         flex: 100%;
-        padding: 5%;
+        max-width: 100%;
+        padding: 3%;
     }
 
     .article h2 {
