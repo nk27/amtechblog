@@ -118,7 +118,7 @@ div.tags a {
     margin: 0 auto;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 1024px) {
 
     .article pre {
         font-size: 0.8rem;
