@@ -2,19 +2,34 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://techblog.gadget-amphone.com/posts/my-first-post/</loc>
+    <loc>https://techblog.gadget-amphone.com/tags/ai/</loc>
+    <lastmod>2024-01-10T21:30:41+09:00</lastmod>
+  </url><url>
+    <loc>https://techblog.gadget-amphone.com/tags/chatgpt/</loc>
+    <lastmod>2024-01-10T21:30:41+09:00</lastmod>
+  </url><url>
+    <loc>https://techblog.gadget-amphone.com/tags/flask/</loc>
+    <lastmod>2024-01-10T21:30:41+09:00</lastmod>
+  </url><url>
+    <loc>https://techblog.gadget-amphone.com/tags/llama-cpp-python/</loc>
+    <lastmod>2024-01-10T21:30:41+09:00</lastmod>
+  </url><url>
+    <loc>https://techblog.gadget-amphone.com/posts/llm-flask/</loc>
+    <lastmod>2024-01-10T21:30:41+09:00</lastmod>
+  </url><url>
+    <loc>https://techblog.gadget-amphone.com/tags/llama2/</loc>
+    <lastmod>2024-01-10T21:30:41+09:00</lastmod>
+  </url><url>
+    <loc>https://techblog.gadget-amphone.com/tags/llm/</loc>
     <lastmod>2024-01-10T21:30:41+09:00</lastmod>
   </url><url>
     <loc>https://techblog.gadget-amphone.com/posts/</loc>
     <lastmod>2024-01-10T21:30:41+09:00</lastmod>
   </url><url>
+    <loc>https://techblog.gadget-amphone.com/tags/python/</loc>
+    <lastmod>2024-01-10T21:30:41+09:00</lastmod>
+  </url><url>
     <loc>https://techblog.gadget-amphone.com/tags/</loc>
-    <lastmod>2024-01-10T21:30:41+09:00</lastmod>
-  </url><url>
-    <loc>https://techblog.gadget-amphone.com/tags/test/</loc>
-    <lastmod>2024-01-10T21:30:41+09:00</lastmod>
-  </url><url>
-    <loc>https://techblog.gadget-amphone.com/tags/test2/</loc>
     <lastmod>2024-01-10T21:30:41+09:00</lastmod>
   </url><url>
     <loc>https://techblog.gadget-amphone.com/</loc>

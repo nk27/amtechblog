@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>あむ&#39;s TechBlog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/css/styles.css">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3632082460538665" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header>
+        <nav>
+            <a class="title" href="/">あむ&#39;s TechBlog</a>
+            <a href="/about">About</a>  
+            <a href="/contact">Contact</a> 
+        </nav>
+    </header>
+
+    <main>
+        
+    
+        <link rel="stylesheet" href="/css/single.css">
+        <div class="article-title-container">
+            <h2 class="article-title">llama-cpp-pythonとFlaskでLLMサーバをたててみた</h2>
+            <div class="article-date">2024-01-10に公開</div>
+        </div>
+        <div class="content">
+            <div class="flex-container">
+                <div class="article">
+                    <p>※本ブログはアフィリエイトで収益を得ています</p>
+                    <div class="tags">
+                        
+                            <a href="/tags/llama-cpp-python">
+                                <span class="tag">llama-cpp-python</span>
+                            </a>
+                        
+                            <a href="/tags/Llama2">
+                                <span class="tag">Llama2</span>
+                            </a>
+                        
+                            <a href="/tags/LLM">
+                                <span class="tag">LLM</span>
+                            </a>
+                        
+                            <a href="/tags/AI">
+                                <span class="tag">AI</span>
+                            </a>
+                        
+                            <a href="/tags/Flask">
+                                <span class="tag">Flask</span>
+                            </a>
+                        
+                            <a href="/tags/Python">
+                                <span class="tag">Python</span>
+                            </a>
+                        
+                            <a href="/tags/ChatGPT">
+                                <span class="tag">ChatGPT</span>
+                            </a>
+                        
+                    </div>
+                    <div class="article-content"><h2 id="はじめに">はじめに</h2>
+<p>今回は、llama-cpp-pythonとFlaskを使って、LLMサーバをたててみたので、その手順を紹介します。特にStreamデータとして返却する部分に苦労したため、自分の備忘録としても残しておきます</p>
+<h2 id="事前準備">事前準備</h2>
+<p>事前準備に下記をインストールします</p>
+<ul>
+<li>Flaskのインストール</li>
+<li>llama-cpp-pythonのインストール</li>
+<li>学習済み大規模言語モデルのダウンロード</li>
+</ul>
+<h3 id="flaskのインストール">Flaskのインストール</h3>
+<p>FlaskはPythonでWebアプリケーションを作成するための軽量なフレームワークです。今回はこちらを使って、ローカル環境にLLMサーバをたてるためインストールしていきます</p>
+<p>Flaskのインストールは下記のコマンドを使います</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>pip install Flask
+</span></span></code></pre></div><h3 id="llama-cpp-pythonのインストール">llama-cpp-pythonのインストール</h3>
+<p>llama-cpp-pythonは、Llama2のPythonラッパーです。Llama2はLarge Language Model(大規模言語モデル)の一種類です。こちらを使うと簡単にローカル環境でLLMをたてることができます。ローカル環境にLLMサーバをたてるためインストールしていきます</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>pip install llama-cpp-python
+</span></span></code></pre></div><h3 id="学習済み大規模言語モデルのダウンロード">学習済み大規模言語モデルのダウンロード</h3>
+<p>大規模言語モデルを個人の環境で学習するのはとても困難です。そこで他の方が公開している学習済みモデルを使います。そこで便利なのが<a href="https://huggingface.co/spaces">Hugging Face</a>という学習済みモデル公開サイトです。今回はこの中でELYZA社のモデルをggufファイル化してくださっていた方がいたので利用させていただきます。</p>
+<p><a href="https://huggingface.co/mmnga/ELYZA-japanese-CodeLlama-7b-instruct-gguf/tree/main">こちら</a>にアクセスし、ELYZA-japanese-Llama-2-7b-instruct-q8_0.ggufをダウンロードしてください。</p>
+<h2 id="pythonのコードを書く">Pythonのコードを書く</h2>
+<p>先に完成系を下記に示します。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">from</span> llama_cpp <span style="color:#f92672">import</span> Llama
+</span></span><span style="display:flex;"><span><span style="color:#f92672">from</span> flask <span style="color:#f92672">import</span> Flask, request, Response
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>llm <span style="color:#f92672">=</span> Llama(model_path<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;./ELYZA-japanese-Llama-2-7b-instruct-q8_0.gguf&#34;</span>, chat_format<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;llama-2&#34;</span>)
+</span></span><span style="display:flex;"><span>app <span style="color:#f92672">=</span> Flask(__name__)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">@app.route</span>(<span style="color:#e6db74">&#39;/llama&#39;</span>, methods<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#39;POST&#39;</span>])
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">llama_chat</span>():
+</span></span><span style="display:flex;"><span>    data <span style="color:#f92672">=</span> request<span style="color:#f92672">.</span>json
+</span></span><span style="display:flex;"><span>    message <span style="color:#f92672">=</span> data[<span style="color:#e6db74">&#39;message&#39;</span>]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">def</span> <span style="color:#a6e22e">generate</span>():
+</span></span><span style="display:flex;"><span>        response <span style="color:#f92672">=</span> llm<span style="color:#f92672">.</span>create_chat_completion(messages<span style="color:#f92672">=</span>[{<span style="color:#e6db74">&#39;role&#39;</span>: <span style="color:#e6db74">&#39;user&#39;</span>, <span style="color:#e6db74">&#39;content&#39;</span>: message}], stream<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>, stop<span style="color:#f92672">=</span><span style="color:#66d9ef">None</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">for</span> chunk <span style="color:#f92672">in</span> response:
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">if</span> <span style="color:#e6db74">&#39;content&#39;</span> <span style="color:#f92672">in</span> chunk[<span style="color:#e6db74">&#39;choices&#39;</span>][<span style="color:#ae81ff">0</span>][<span style="color:#e6db74">&#39;delta&#39;</span>]:
+</span></span><span style="display:flex;"><span>                <span style="color:#66d9ef">yield</span> chunk[<span style="color:#e6db74">&#39;choices&#39;</span>][<span style="color:#ae81ff">0</span>][<span style="color:#e6db74">&#39;delta&#39;</span>][<span style="color:#e6db74">&#39;content&#39;</span>]
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> Response(generate(), mimetype<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;text/plain&#39;</span>) 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> __name__ <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;__main__&#34;</span>:
+</span></span><span style="display:flex;"><span>    app<span style="color:#f92672">.</span>run(port<span style="color:#f92672">=</span><span style="color:#ae81ff">5000</span>, debug<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span></code></pre></div><p>上記のコードを下記で実行してください。※モデルの読み込みが終わりサーバが立ち上がるまで時間がかかります</p>
+<p>サーバが立ち上がったら下記でサーバにリクエストを送ります</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>curl -X POST -H <span style="color:#e6db74">&#34;Content-Type: application/json&#34;</span> -d <span style="color:#e6db74">&#39;{&#34;message&#34;:&#34;こんにちは&#34;}&#39;</span> http://127.0.0.1:5000/llama
+</span></span></code></pre></div><p>待っていると下記のようなメッセージが返ってきました。今回のコードはストリームデータを返却するようにしており、ChatGPTのように文章が随時更新されていきます。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>こんにちは！
+</span></span><span style="display:flex;"><span>私はELYZAによって訓練されたAIです。
+</span></span><span style="display:flex;"><span>ユーザーからの様々な質問や要望にお答えすることができます。何をお手伝いしましょうか？%    
+</span></span></code></pre></div><p>ということで完成です！</p>
+<h2 id="さいごに">さいごに</h2>
+<p>今回は、llama-cpp-pythonとFlaskを使ってLLMサーバをたててみました。ローカル環境でのたて方を紹介しましたが、実際には、AWSやGCPなどのクラウド環境でたてることができます。また、今回のコードは実は未完成です。本来であればチャット履歴全部をモデルに入力してあげる必要がありますが、今回は1メッセージのみの入力となっております。是非、試してみてください！</p>
+</div>
+                </div>
+                <div class="right-sidebar">
+                    <div class="profile">
+    <h2>自己紹介</h2>
+    <div class="profile-image-container">
+        <img src="https://techblog.gadget-amphone.com/images/profile.jpg" alt="自己紹介画像" class="profile-image" />
+    </div>
+    <p>Twitterアカウント  <a href="https://twitter.com/gadget_amphone">@gadget_amphone</a><br>
+        サイト運営者のあむです<br>
+        アプリケーションエンジニアとして働いています<br>
+        本ブログでは自分が学んだことを備忘録としてまとめていく方針です<br>
+    </p>
+</div>
+
+
+                    <h2>目次</h2>
+                    <div class="table-of-contents">
+                        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#はじめに">はじめに</a></li>
+    <li><a href="#事前準備">事前準備</a>
+      <ul>
+        <li><a href="#flaskのインストール">Flaskのインストール</a></li>
+        <li><a href="#llama-cpp-pythonのインストール">llama-cpp-pythonのインストール</a></li>
+        <li><a href="#学習済み大規模言語モデルのダウンロード">学習済み大規模言語モデルのダウンロード</a></li>
+      </ul>
+    </li>
+    <li><a href="#pythonのコードを書く">Pythonのコードを書く</a></li>
+    <li><a href="#さいごに">さいごに</a></li>
+  </ul>
+</nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+
+    </main>
+
+    <footer class="site-footer">
+        <p>© 2024 あむ&#39;s TechBlog</p>
+    </footer>
+</body>
+</html>

@@ -76,6 +76,11 @@ div.tags a {
     font-size: 0.7rem;
 }
 
+.article li {
+    color: #1f1e1e;
+    font-size: 0.7rem;
+}
+
 .article pre {
     padding: 10px;
     margin-top: 1.4rem;
@@ -104,7 +109,7 @@ li {
 }
 
 .profile p {
-    font-size: 1.0rem;
+    font-size: 1.4rem;
     color: #494949;
 }
 

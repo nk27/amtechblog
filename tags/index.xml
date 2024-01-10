@@ -9,17 +9,52 @@
     <lastBuildDate>Wed, 10 Jan 2024 21:30:41 +0900</lastBuildDate>
     <atom:link href="https://techblog.gadget-amphone.com/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>test</title>
-      <link>https://techblog.gadget-amphone.com/tags/test/</link>
+      <title>AI</title>
+      <link>https://techblog.gadget-amphone.com/tags/ai/</link>
       <pubDate>Wed, 10 Jan 2024 21:30:41 +0900</pubDate>
-      <guid>https://techblog.gadget-amphone.com/tags/test/</guid>
+      <guid>https://techblog.gadget-amphone.com/tags/ai/</guid>
       <description></description>
     </item>
     <item>
-      <title>test2</title>
-      <link>https://techblog.gadget-amphone.com/tags/test2/</link>
+      <title>ChatGPT</title>
+      <link>https://techblog.gadget-amphone.com/tags/chatgpt/</link>
       <pubDate>Wed, 10 Jan 2024 21:30:41 +0900</pubDate>
-      <guid>https://techblog.gadget-amphone.com/tags/test2/</guid>
+      <guid>https://techblog.gadget-amphone.com/tags/chatgpt/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Flask</title>
+      <link>https://techblog.gadget-amphone.com/tags/flask/</link>
+      <pubDate>Wed, 10 Jan 2024 21:30:41 +0900</pubDate>
+      <guid>https://techblog.gadget-amphone.com/tags/flask/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>llama-cpp-python</title>
+      <link>https://techblog.gadget-amphone.com/tags/llama-cpp-python/</link>
+      <pubDate>Wed, 10 Jan 2024 21:30:41 +0900</pubDate>
+      <guid>https://techblog.gadget-amphone.com/tags/llama-cpp-python/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Llama2</title>
+      <link>https://techblog.gadget-amphone.com/tags/llama2/</link>
+      <pubDate>Wed, 10 Jan 2024 21:30:41 +0900</pubDate>
+      <guid>https://techblog.gadget-amphone.com/tags/llama2/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>LLM</title>
+      <link>https://techblog.gadget-amphone.com/tags/llm/</link>
+      <pubDate>Wed, 10 Jan 2024 21:30:41 +0900</pubDate>
+      <guid>https://techblog.gadget-amphone.com/tags/llm/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Python</title>
+      <link>https://techblog.gadget-amphone.com/tags/python/</link>
+      <pubDate>Wed, 10 Jan 2024 21:30:41 +0900</pubDate>
+      <guid>https://techblog.gadget-amphone.com/tags/python/</guid>
       <description></description>
     </item>
   </channel>

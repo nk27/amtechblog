@@ -9,11 +9,11 @@
     <lastBuildDate>Wed, 10 Jan 2024 21:30:41 +0900</lastBuildDate>
     <atom:link href="https://techblog.gadget-amphone.com/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>My First Post</title>
-      <link>https://techblog.gadget-amphone.com/posts/my-first-post/</link>
+      <title>llama-cpp-pythonとFlaskでLLMサーバをたててみた</title>
+      <link>https://techblog.gadget-amphone.com/posts/llm-flask/</link>
       <pubDate>Wed, 10 Jan 2024 21:30:41 +0900</pubDate>
-      <guid>https://techblog.gadget-amphone.com/posts/my-first-post/</guid>
-      <description></description>
+      <guid>https://techblog.gadget-amphone.com/posts/llm-flask/</guid>
+      <description>はじめに 今回は、llama-cpp-pythonとFlaskを使って、LLMサーバをたててみたので、その手順を紹介します。特にStreamデータとして返却する部分に苦労したため、自分の備忘録としても残しておきます&#xA;事前準備 事前準備に下記をインストールします&#xA;Flaskのインストール llama-cpp-pythonのインストール 学習済み大規模言語モデルのダウンロード Flaskのインストール FlaskはPythonでWebアプリケーションを作成するための軽量なフレームワークです。今回はこちらを使って、ローカル環境にLLMサーバをたてるためインストールしていきます&#xA;Flaskのインストールは下記のコマンドを使います&#xA;pip install Flask llama-cpp-pythonのインストール llama-cpp-pythonは、Llama2のPythonラッパーです。Llama2はLarge Language Model(大規模言語モデル)の一種類です。こちらを使うと簡単にローカル環境でLLMをたてることができます。ローカル環境にLLMサーバをたてるためインストールしていきます&#xA;pip install llama-cpp-python 学習済み大規模言語モデルのダウンロード 大規模言語モデルを個人の環境で学習するのはとても困難です。そこで他の方が公開している学習済みモデルを使います。そこで便利なのがHugging Faceという学習済みモデル公開サイトです。今回はこの中でELYZA社のモデルをggufファイル化してくださっていた方がいたので利用させていただきます。&#xA;こちらにアクセスし、ELYZA-japanese-Llama-2-7b-instruct-q8_0.ggufをダウンロードしてください。&#xA;Pythonのコードを書く 先に完成系を下記に示します。&#xA;from llama_cpp import Llama from flask import Flask, request, Response llm = Llama(model_path=&amp;#34;./ELYZA-japanese-Llama-2-7b-instruct-q8_0.gguf&amp;#34;, chat_format=&amp;#34;llama-2&amp;#34;) app = Flask(__name__) @app.route(&amp;#39;/llama&amp;#39;, methods=[&amp;#39;POST&amp;#39;]) def llama_chat(): data = request.json message = data[&amp;#39;message&amp;#39;] def generate(): response = llm.create_chat_completion(messages=[{&amp;#39;role&amp;#39;: &amp;#39;user&amp;#39;, &amp;#39;content&amp;#39;: message}], stream=True, stop=None) for chunk in response: if &amp;#39;content&amp;#39; in chunk[&amp;#39;choices&amp;#39;][0][&amp;#39;delta&amp;#39;]: yield chunk[&amp;#39;choices&amp;#39;][0][&amp;#39;delta&amp;#39;][&amp;#39;content&amp;#39;] return Response(generate(), mimetype=&amp;#39;text/plain&amp;#39;) if __name__ == &amp;#34;__main__&amp;#34;: app.</description>
     </item>
     <item>
       <title>About</title>
