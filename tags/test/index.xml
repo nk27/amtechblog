@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>test on あむ&#39;s TechBlog</title>
+    <link>https://techblog.gadget-amphone.com/tags/test/</link>
+    <description>Recent content in test on あむ&#39;s TechBlog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>jp-JA</language>
+    <lastBuildDate>Wed, 10 Jan 2024 21:30:41 +0900</lastBuildDate>
+    <atom:link href="https://techblog.gadget-amphone.com/tags/test/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>My First Post</title>
+      <link>https://techblog.gadget-amphone.com/posts/my-first-post/</link>
+      <pubDate>Wed, 10 Jan 2024 21:30:41 +0900</pubDate>
+      <guid>https://techblog.gadget-amphone.com/posts/my-first-post/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>

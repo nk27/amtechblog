@@ -1,0 +1,105 @@
+.content {
+    display: flex;
+    width: 100%;
+}
+
+.articles {
+    flex: 70%;
+    box-sizing: border-box;
+    height: 95%;
+}
+
+.right-sidebar {
+    flex: 30%;
+    padding-left: 20px;
+    box-sizing: border-box;
+}
+
+h1, h2 {
+    color: #494949;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    background-color: white;
+    margin-bottom: 10px;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+li div.article-title {
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+    color: #494949;
+}
+
+li div.article-date {
+    margin-bottom: 10px;
+    font-size: 0.8rem;
+    color: #494949;
+}
+
+li div.tags {
+    gap: 10px;
+    font-size: 0.8rem;
+}
+
+li a {
+    display: inline-block;
+    text-decoration: none;
+    color: black;
+}
+
+li div.tags span {
+    border: 1px solid #f5f5f5;
+    border-radius: 5px;
+    padding: 5px 10px;
+    background-color: #f5f5f5;
+    color: #494949;
+}
+
+.profile p {
+    font-size: 0.6rem;
+    color: #494949;
+}
+
+.pagination {
+    text-align: center;
+    margin-bottom: 2.0rem;
+    margin-top: 1.5rem;
+}
+
+.pagination a {
+    margin-left: 3.0rem;
+    margin-right: 3.0rem;
+    font-size: 0.8rem;
+    color: #494949;
+}
+    
+
+@media (max-width: 600px) {
+
+    .articles {
+        padding: 1%;
+    }
+
+    h1, h2 {
+        font-size: 1.2rem;
+    }
+
+    li div.article-title {
+        font-size: 1.2rem;
+    }
+
+    li div.article-date {
+        font-size: 0.7rem;
+    }
+
+    li div.tags {
+        font-size: 0.7rem;
+    }
+}

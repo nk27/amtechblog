@@ -1,0 +1,146 @@
+.article-title-container {
+    text-align: center;
+}
+
+.article-title {
+    font-size: 2.0rem;
+    color: #494949;
+    margin-bottom: 10px;
+}
+
+.content {
+    margin: 0 auto;
+    padding-top: 20px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.flex-container {
+    display: flex;
+}
+
+.article {
+    flex: 70%;
+    padding: 2%;
+    background-color: #ffffff;
+    box-sizing: border-box;
+    border-radius: 10px;
+}
+
+.right-sidebar {
+    flex: 30%;
+    padding-left: 20px;
+    box-sizing: border-box;
+}
+
+.right-sidebar h2 {
+    margin-top: 0;
+    margin-bottom: 0.4rem;
+    color: #494949;
+}
+
+div.tags a {
+    display: inline-block;
+    text-decoration: none;
+    color: #494949;
+    font-size: 0.6rem;
+    margin-right: 5px;
+    margin-bottom: 5px;
+}
+
+.tag {
+    border: 1px solid #494949;
+    border-radius: 10px;
+    padding: 5px 10px;
+    background-color: #f5f5f5;
+}
+
+.article h2 {
+    margin-top: 2.4rem;
+    margin-bottom: 1.2rem;
+    border-bottom: 1px solid #494949;
+    color: #1f1e1e;
+    font-size: 1.8rem;
+}
+
+.article h3 {
+    margin-top: 0.2rem;
+    margin-bottom: 0.2rem;
+    color: #1f1e1e;
+    font-size: 1.6rem;
+}
+
+.article p {
+    margin-top: 0.4rem;
+    color: #1f1e1e;
+    font-size: 0.7rem;
+}
+
+.article pre {
+    padding: 10px;
+    margin-top: 1.4rem;
+    margin-bottom: 1.4rem;
+    font-size: 0.6rem;
+}
+
+.table-of-contents ul {
+    list-style-position: inside;
+    padding-left: 0;
+    font-size: 0.6rem;
+}
+
+li {
+    position: relative;
+    line-height: 1.5;
+}
+
+.table-of-contents a {
+    color: #333;
+    text-decoration: none;
+}
+
+.table-of-contents a:hover {
+    text-decoration: underline;
+}
+
+.profile p {
+    font-size: 0.6rem;
+    color: #494949;
+}
+
+.content-contact {
+    width: 80%;
+    margin: 0 auto;
+}
+
+@media (max-width: 600px) {
+    .article pre {
+        font-size: 0.8rem;
+    }
+
+    .table-of-contents a {
+        font-size: 1rem;
+    }
+
+    .article {
+        flex: 100%;
+        padding: 5%;
+    }
+
+    .article h2 {
+        font-size: 1.6rem;
+    }
+
+    .article h3 {
+        font-size: 1.4rem;
+    }
+    
+    .article-content p {
+        font-size: 0.8rem;
+    }
+    
+    .article pre {
+        font-size: 0.8rem;
+    }
+}
+
