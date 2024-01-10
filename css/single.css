@@ -91,12 +91,12 @@ div.tags a {
 .table-of-contents ul {
     list-style-position: inside;
     padding-left: 0;
-    font-size: 0.6rem;
 }
 
-li {
+.table-of-contents li {
     position: relative;
     line-height: 1.5;
+    font-size: 0.8rem;
 }
 
 .table-of-contents a {
@@ -108,10 +108,6 @@ li {
     text-decoration: underline;
 }
 
-.profile p {
-    font-size: 1.4rem;
-    color: #494949;
-}
 
 .content-contact {
     width: 80%;

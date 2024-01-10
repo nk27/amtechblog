@@ -50,6 +50,11 @@ main {
     border-radius: 50%;
 }
 
+.profile p {
+    font-size: 1.4rem;
+    color: #494949;
+}
+
 footer {
     background-color: #808080;
     color: white;
