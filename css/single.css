@@ -71,7 +71,7 @@ div.tags a {
 }
 
 .article p {
-    margin-top: 0.8rem;
+    margin-top: 1.0rem;
     color: #1f1e1e;
     font-size: 0.7rem;
 }
@@ -96,7 +96,7 @@ div.tags a {
 .table-of-contents li {
     position: relative;
     line-height: 1.5;
-    font-size: 0.8rem;
+    font-size: 1.0rem;
 }
 
 .table-of-contents a {
