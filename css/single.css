@@ -25,6 +25,7 @@
     background-color: #ffffff;
     box-sizing: border-box;
     border-radius: 10px;
+    max-width: 70%;
 }
 
 .right-sidebar {
@@ -71,7 +72,7 @@ div.tags a {
 }
 
 .article p {
-    margin-top: 1.0rem;
+    margin-top: 0.8rem;
     color: #1f1e1e;
     font-size: 0.9rem;
 }
@@ -82,10 +83,12 @@ div.tags a {
 }
 
 .article pre {
+    max-width: 100%;
     padding: 10px;
     margin-top: 1.4rem;
     margin-bottom: 1.4rem;
-    font-size: 1.1rem;
+    font-size: 0.8rem;
+    overflow-x: auto;
 }
 
 .table-of-contents ul {
@@ -96,7 +99,7 @@ div.tags a {
 .table-of-contents li {
     position: relative;
     line-height: 1.5;
-    font-size: 1.0rem;
+    font-size: 0.9rem;
 }
 
 .table-of-contents a {
