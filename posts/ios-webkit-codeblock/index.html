@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>あむ&#39;s TechBlog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/css/styles.css">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3632082460538665" crossorigin="anonymous"></script>
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@gadget_amphone">
+    <meta name="twitter:title" content="あむ&#39;s TechBlog">
+    <meta name="twitter:description" content="ブログ内コードブロックの表示がおかしい問題を治した話">
+    <meta name="twitter:image" content="https://techblog.gadget-amphone.com//images/profile.jpg">
+    <link rel="shortcut icon" href="/favicon.ico">
+</head>
+<body>
+    <header>
+        <nav>
+            <a class="title" href="/">あむ&#39;s TechBlog</a>
+            <a href="/about">About</a>  
+            <a href="/contact">Contact</a> 
+        </nav>
+    </header>
+
+    <main>
+        
+    
+        <link rel="stylesheet" href="/css/single.css">
+        <div class="article-title-container">
+            <h2 class="article-title">ブログ内コードブロックの表示がおかしい問題を治した話</h2>
+            <div class="article-date">2024-01-12に公開</div>
+        </div>
+        <div class="content">
+            <div class="flex-container">
+                <div class="article">
+                    <p>※本ブログはアフィリエイトで収益を得ています</p>
+                    <div class="tags">
+                        
+                            <a href="/tags/hugo">
+                                <span class="tag">hugo</span>
+                            </a>
+                        
+                            <a href="/tags/css">
+                                <span class="tag">css</span>
+                            </a>
+                        
+                            <a href="/tags/webkit">
+                                <span class="tag">webkit</span>
+                            </a>
+                        
+                    </div>
+                    <div class="article-content"><h2 id="はじめに">はじめに</h2>
+<p>ふと弊サイトをiPhoneで確認すると下記の通り、コードブロック内が行単位でフォントサイズがめちゃくちゃになってました。</p>
+<blockquote class="twitter-tweet"><p lang="ja" dir="ltr">そういえばSafariでテストしてなかったと思い見たらコードブロック終わってて草 <a href="https://t.co/2ojFjT6YCu">pic.twitter.com/2ojFjT6YCu</a></p>&mdash; あむ (@gadget_amphone) <a href="https://twitter.com/gadget_amphone/status/1745451919873880292?ref_src=twsrc%5Etfw">January 11, 2024</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<p>今回はこれを修正した話をまとめます。</p>
+<h2 id="解決方法">解決方法</h2>
+<p>先に結論を書くと、コードブロックのフォントサイズを指定するCSS部分に下記を追加して解決しました。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-css" data-lang="css"><span style="display:flex;"><span><span style="color:#f92672">code</span> <span style="color:#f92672">span</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">font-size</span>: <span style="color:#ae81ff">0.8</span><span style="color:#66d9ef">rem</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">-webkit-</span>text-size-adjust: <span style="color:#66d9ef">none</span>; <span style="color:#75715e">/* 追加部分、WebKit特有のフォントサイズ調整機能を無効化 */</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="解決までの道のり">解決までの道のり</h2>
+<p>当初はCSSの設定が誤っているのだと思い込んでいました。しかし、WindowsやMac、Androidのブラウザでは問題なく表示されていたため、原因はOSやブラウザの違いにあるのではないかと考えました。</p>
+<p>はじめにiOS Simulatorの開発者ツールで分析を行いました。その結果、コードブロック内の各行は並列で同じタグの要素が並んでおり、全てに同じCSSが適用されていました。にも関わらず、何故かフォントサイズが異なっていることがわかりました。</p>
+<p>これはあまりにも不可解でしたが、iOS限定の事象であり、Webkit特有の問題があるのではないかと考えました。そこで今回の設定でWebkit特有のフォントサイズ調整機能を無効化することで解決にいたりました。</p>
+<h2 id="まとめ">まとめ</h2>
+<p>普段はWebのフロント開発をしていないため、このような事象は初体験となりました。普段の技術学習の中で、iOSのブラウザはWebkitを全て使っており、時々変な挙動をすることは頭の片隅にあったので今回は何とか解決することができました。同じ現象にあたった方がいらっしゃいましたら、是非こちらを活用してください。</p>
+</div>
+                </div>
+                <div class="right-sidebar">
+                    <div class="profile">
+    <h2>自己紹介</h2>
+    <div class="profile-image-container">
+        <img src="https://techblog.gadget-amphone.com/images/profile.jpg" alt="自己紹介画像" class="profile-image" />
+    </div>
+    <p>Twitterアカウント  <a href="https://twitter.com/gadget_amphone">@gadget_amphone</a><br>
+        サイト運営者のあむです<br>
+        アプリケーションエンジニアとして働いています<br>
+        本ブログでは自分が学んだことを備忘録としてまとめていく方針です<br>
+    </p>
+</div>
+
+
+                    <h2>目次</h2>
+                    <div class="table-of-contents">
+                        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#はじめに">はじめに</a></li>
+    <li><a href="#解決方法">解決方法</a></li>
+    <li><a href="#解決までの道のり">解決までの道のり</a></li>
+    <li><a href="#まとめ">まとめ</a></li>
+  </ul>
+</nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+
+    </main>
+
+    <footer class="site-footer">
+        <p>© 2024 あむ&#39;s TechBlog</p>
+    </footer>
+</body>
+</html>

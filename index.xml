@@ -6,8 +6,15 @@
     <description>Recent content on あむ&#39;s TechBlog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>jp-JA</language>
-    <lastBuildDate>Wed, 10 Jan 2024 21:30:41 +0900</lastBuildDate>
+    <lastBuildDate>Fri, 12 Jan 2024 01:27:43 +0900</lastBuildDate>
     <atom:link href="https://techblog.gadget-amphone.com/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ブログ内コードブロックの表示がおかしい問題を治した話</title>
+      <link>https://techblog.gadget-amphone.com/posts/ios-webkit-codeblock/</link>
+      <pubDate>Fri, 12 Jan 2024 01:27:43 +0900</pubDate>
+      <guid>https://techblog.gadget-amphone.com/posts/ios-webkit-codeblock/</guid>
+      <description>はじめに ふと弊サイトをiPhoneで確認すると下記の通り、コードブロック内が行単位でフォントサイズがめちゃくちゃになってました。&#xA;そういえばSafariでテストしてなかったと思い見たらコードブロック終わってて草 pic.twitter.com/2ojFjT6YCu&#xA;&amp;mdash; あむ (@gadget_amphone) January 11, 2024 今回はこれを修正した話をまとめます。&#xA;解決方法 先に結論を書くと、コードブロックのフォントサイズを指定するCSS部分に下記を追加して解決しました。&#xA;code span { font-size: 0.8rem; -webkit-text-size-adjust: none; /* 追加部分、WebKit特有のフォントサイズ調整機能を無効化 */ } 解決までの道のり 当初はCSSの設定が誤っているのだと思い込んでいました。しかし、WindowsやMac、Androidのブラウザでは問題なく表示されていたため、原因はOSやブラウザの違いにあるのではないかと考えました。&#xA;はじめにiOS Simulatorの開発者ツールで分析を行いました。その結果、コードブロック内の各行は並列で同じタグの要素が並んでおり、全てに同じCSSが適用されていました。にも関わらず、何故かフォントサイズが異なっていることがわかりました。&#xA;これはあまりにも不可解でしたが、iOS限定の事象であり、Webkit特有の問題があるのではないかと考えました。そこで今回の設定でWebkit特有のフォントサイズ調整機能を無効化することで解決にいたりました。&#xA;まとめ 普段はWebのフロント開発をしていないため、このような事象は初体験となりました。普段の技術学習の中で、iOSのブラウザはWebkitを全て使っており、時々変な挙動をすることは頭の片隅にあったので今回は何とか解決することができました。同じ現象にあたった方がいらっしゃいましたら、是非こちらを活用してください。</description>
+    </item>
     <item>
       <title>llama-cpp-pythonとFlaskでLLMサーバをたててみた</title>
       <link>https://techblog.gadget-amphone.com/posts/llm-flask/</link>

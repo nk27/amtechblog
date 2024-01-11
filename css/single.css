@@ -147,6 +147,7 @@ code span {
     
     code span {
         font-size: 0.8rem;
+        -webkit-text-size-adjust: none; /* WebKit特有のフォントサイズ調整機能を無効化 */
     }
 }
 
