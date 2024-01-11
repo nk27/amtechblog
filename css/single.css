@@ -92,7 +92,7 @@ div.tags a {
     overflow-x: auto;
 }
 
-.article pre span {
+code span {
     font-size: 0.8rem;
 }
 
