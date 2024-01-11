@@ -92,6 +92,10 @@ div.tags a {
     overflow-x: auto;
 }
 
+.article pre span {
+    font-size: 0.8rem;
+}
+
 .table-of-contents ul {
     list-style-position: inside;
     padding-left: 0;
