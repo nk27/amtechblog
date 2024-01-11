@@ -88,7 +88,6 @@ div.tags a {
     padding: 10px;
     margin-top: 1.4rem;
     margin-bottom: 1.4rem;
-    font-size: 0.8rem;
     overflow-x: auto;
 }
 
@@ -124,10 +123,6 @@ code span {
 
 @media (max-width: 1024px) {
 
-    .article pre {
-        font-size: 0.8rem;
-    }
-
     .table-of-contents a {
         font-size: 1rem;
     }
@@ -150,7 +145,7 @@ code span {
         font-size: 0.8rem;
     }
     
-    .article pre {
+    code span {
         font-size: 0.8rem;
     }
 }
