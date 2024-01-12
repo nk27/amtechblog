@@ -142,11 +142,11 @@ code span {
     }
     
     .article-content p {
-        font-size: 0.8rem;
+        font-size: 1.0rem;
     }
     
     code span {
-        font-size: 0.8rem;
+        font-size: 1.0rem;
         -webkit-text-size-adjust: none; /* WebKit特有のフォントサイズ調整機能を無効化 */
     }
 }
