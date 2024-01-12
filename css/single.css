@@ -144,6 +144,10 @@ code span {
     .article-content p {
         font-size: 1.0rem;
     }
+
+    .article li {
+        font-size: 1.0rem;
+    }
     
     code span {
         font-size: 1.0rem;
