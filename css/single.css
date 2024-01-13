@@ -127,6 +127,14 @@ blockquote {
     background-color: #f8f8f8 !important;
 }
 
+.share-button {
+    margin-top: 1.6rem;
+}
+
+.share-button a {
+    font-size: 1.0rem;
+}
+
 @media screen and (max-width: 1024px) {
 
     .article {
