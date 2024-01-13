@@ -121,7 +121,7 @@ code span {
     margin: 0 auto;
 }
 
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 600px) {
 
     .table-of-contents a {
         font-size: 1rem;
