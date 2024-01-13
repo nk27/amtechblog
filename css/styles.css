@@ -80,10 +80,6 @@ footer p {
         margin-left: 10px; /* リンク間のマージンを減らす */
     }
 
-    main {
-        max-width: 97%; /* メインコンテンツの最大幅を調整 */
-    }
-
     .right-sidebar {
         display: none;
     }
@@ -96,9 +92,5 @@ footer p {
 
     header nav a {
         margin-left: 10px; /* リンク間のマージンを減らす */
-    }
-
-    main {
-        max-width: 97%; /* メインコンテンツの最大幅を調整 */
     }
 }
