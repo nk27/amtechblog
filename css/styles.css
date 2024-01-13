@@ -71,7 +71,7 @@ footer p {
 }
 
 /* スマートフォン向けのスタイル */
-@media (max-width: 1024px) {
+@media screen and (max-width: 600px) {
     header nav, main {
         width: 97%; /* スマートフォンでは幅を広げる */
     }
