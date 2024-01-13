@@ -2,22 +2,31 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://techblog.gadget-amphone.com/tags/ownership/</loc>
+    <lastmod>2024-01-13T23:48:31+09:00</lastmod>
+  </url><url>
+    <loc>https://techblog.gadget-amphone.com/posts/</loc>
+    <lastmod>2024-01-13T23:48:31+09:00</lastmod>
+  </url><url>
+    <loc>https://techblog.gadget-amphone.com/tags/rust/</loc>
+    <lastmod>2024-01-13T23:48:31+09:00</lastmod>
+  </url><url>
+    <loc>https://techblog.gadget-amphone.com/posts/rust-ownership/</loc>
+    <lastmod>2024-01-13T23:48:31+09:00</lastmod>
+  </url><url>
+    <loc>https://techblog.gadget-amphone.com/tags/</loc>
+    <lastmod>2024-01-13T23:48:31+09:00</lastmod>
+  </url><url>
+    <loc>https://techblog.gadget-amphone.com/</loc>
+    <lastmod>2024-01-13T23:48:31+09:00</lastmod>
+  </url><url>
     <loc>https://techblog.gadget-amphone.com/tags/css/</loc>
     <lastmod>2024-01-12T01:27:43+09:00</lastmod>
   </url><url>
     <loc>https://techblog.gadget-amphone.com/tags/hugo/</loc>
     <lastmod>2024-01-12T01:27:43+09:00</lastmod>
   </url><url>
-    <loc>https://techblog.gadget-amphone.com/posts/</loc>
-    <lastmod>2024-01-12T01:27:43+09:00</lastmod>
-  </url><url>
-    <loc>https://techblog.gadget-amphone.com/tags/</loc>
-    <lastmod>2024-01-12T01:27:43+09:00</lastmod>
-  </url><url>
     <loc>https://techblog.gadget-amphone.com/tags/webkit/</loc>
-    <lastmod>2024-01-12T01:27:43+09:00</lastmod>
-  </url><url>
-    <loc>https://techblog.gadget-amphone.com/</loc>
     <lastmod>2024-01-12T01:27:43+09:00</lastmod>
   </url><url>
     <loc>https://techblog.gadget-amphone.com/posts/ios-webkit-codeblock/</loc>

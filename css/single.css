@@ -121,6 +121,12 @@ code span {
     margin: 0 auto;
 }
 
+blockquote {
+    border-left: 4px solid #ccc !important;
+    padding-left: 1em !important;
+    background-color: #f8f8f8 !important;
+}
+
 @media screen and (max-width: 1024px) {
 
     .article {
@@ -145,4 +151,3 @@ code span {
         -webkit-text-size-adjust: none; /* WebKit特有のフォントサイズ調整機能を無効化 */
     }
 }
-

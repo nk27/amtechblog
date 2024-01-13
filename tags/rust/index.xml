@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>rust on あむ&#39;s TechBlog</title>
+    <link>https://techblog.gadget-amphone.com/tags/rust/</link>
+    <description>Recent content in rust on あむ&#39;s TechBlog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>jp-JA</language>
+    <lastBuildDate>Sat, 13 Jan 2024 23:48:31 +0900</lastBuildDate>
+    <atom:link href="https://techblog.gadget-amphone.com/tags/rust/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Rustの所有権について学習をしてみる</title>
+      <link>https://techblog.gadget-amphone.com/posts/rust-ownership/</link>
+      <pubDate>Sat, 13 Jan 2024 23:48:31 +0900</pubDate>
+      <guid>https://techblog.gadget-amphone.com/posts/rust-ownership/</guid>
+      <description>はじめに 過去に少しだけRustの学習をしていました。今回改めてRustの学習を始めるにあたり、Rustの所有権について学習をしていきます。&#xA;所有権とは Rustの所有権とは、メモリの安全性を保証するための概念です。Rustの所有権には以下の3つのルールがあります。&#xA;各値は、その値の所有者という変数を持っています。 一度に一つの変数のみが値の所有者であることができます。 所有者がスコープから外れると、値は破棄されます。 なるほど、日本語としては理解しましたが、実際にコードを書いてみないと理解できない部分もあると思います。そこでコードを書いていきます。&#xA;所有権の移動 一度に一つの変数のみが値の所有者であることができます。 の部分について確認をしていきます。下記は変数s1をs2に代入したコードです。&#xA;fn main() { let s1 = String::from(&amp;#34;hello&amp;#34;); let s2 = s1; println!(&amp;#34;{}, world!&amp;#34;, s1); // これはエラーになる } ビルドすると下記の通りエラーが出ました。これは文字列Helloという値の所有権がs1→s2となったためエラーとなるようです。&#xA;error[E0382]: borrow of moved value: `s1` --&amp;gt; src/main.rs:5:28 | 2 | let s1 = String::from(&amp;#34;hello&amp;#34;); | -- move occurs because `s1` has type `String`, which does not implement the `Copy` trait 3 | let s2 = s1; | -- value moved here 4 | 5 | println!</description>
+    </item>
+  </channel>
+</rss>
