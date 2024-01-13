@@ -75,12 +75,12 @@ div.tags a {
 .article p {
     margin-top: 0.8rem;
     color: #1f1e1e;
-    font-size: 0.9rem;
+    font-size: 1.0rem;
 }
 
 .article li {
     color: #1f1e1e;
-    font-size: 0.9rem;
+    font-size: 1.0rem;
 }
 
 .article pre {
@@ -92,7 +92,7 @@ div.tags a {
 }
 
 code span {
-    font-size: 0.8rem;
+    font-size: 1.0rem;
 }
 
 .table-of-contents ul {
