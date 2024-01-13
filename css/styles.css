@@ -71,7 +71,7 @@ footer p {
 }
 
 /* スマートフォン向けのスタイル */
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 1024px) {
     header nav, main {
         width: 97%; /* スマートフォンでは幅を広げる */
     }
@@ -82,15 +82,5 @@ footer p {
 
     .right-sidebar {
         display: none;
-    }
-}
-
-@media screen and (max-width: 1200px) {
-    header nav, main {
-        width: 97%; /* スマートフォンでは幅を広げる */
-    }
-
-    header nav a {
-        margin-left: 10px; /* リンク間のマージンを減らす */
     }
 }
