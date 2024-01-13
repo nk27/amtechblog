@@ -80,7 +80,7 @@ li div.tags span {
 }
     
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 1200px) {
 
     .articles {
         padding: 1%;
