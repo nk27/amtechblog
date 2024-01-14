@@ -141,6 +141,22 @@ blockquote {
     border: 2px solid #494949;
 }
 
+.link-card {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 16px;
+}
+
+.link-card a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.link-card h2 {
+    margin-bottom: 8px;
+}
+
 @media screen and (max-width: 1024px) {
 
     .article {

@@ -6,8 +6,15 @@
     <description>Recent content in localstack on あむ&#39;s TechBlog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>jp-JA</language>
-    <lastBuildDate>Sun, 14 Jan 2024 21:41:08 +0900</lastBuildDate>
+    <lastBuildDate>Mon, 15 Jan 2024 01:04:11 +0900</lastBuildDate>
     <atom:link href="https://techblog.gadget-amphone.com/tags/localstack/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>TerraformでLocalStack上にS3ウェブサイトを構築する</title>
+      <link>https://techblog.gadget-amphone.com/posts/localstack-s3-terraform-introduction/</link>
+      <pubDate>Mon, 15 Jan 2024 01:04:11 +0900</pubDate>
+      <guid>https://techblog.gadget-amphone.com/posts/localstack-s3-terraform-introduction/</guid>
+      <description>はじめに 前回、下記の記事を書きました。今回はCloudFormationではなく、Terraformを使って同じことを実現しようと思います。 AWSのリソースをエミュレートするLocalstackでS3を使ってみる Localstackを使用してローカル環境でAWSのS3バケットを作成し、HTMLファイルをアップロードし、ブラウザで確認する手順を解説します。AWSのリソースをエミュレートするLocalstackの利用は、AWSの学習に非常に便利です。&#xA;Terraformのコード まずは、Terraformのコードを書いていきます。&#xA;# AWSプロバイダの設定 provider &amp;#34;aws&amp;#34; { region = &amp;#34;us-east-1&amp;#34; # AWSのリージョン access_key = &amp;#34;mock_access_key&amp;#34; # AWSのアクセスキー secret_key = &amp;#34;mock_secret_key&amp;#34; # AWSのシークレットキー skip_credentials_validation = true # 資格情報の検証をスキップ skip_metadata_api_check = true # メタデータAPIチェックをスキップ skip_requesting_account_id = true # アカウントIDのリクエストをスキップ endpoints { s3 = &amp;#34;http://0.0.0.0:4566&amp;#34; # S3のエンドポイントをLocalStackに設定 } } # S3バケットの作成 resource &amp;#34;aws_s3_bucket&amp;#34; &amp;#34;bucket&amp;#34; { bucket = &amp;#34;my-bucket&amp;#34; # バケット名 } # S3バケットのウェブサイト設定 resource &amp;#34;aws_s3_bucket_website_configuration&amp;#34; &amp;#34;bucket&amp;#34; { bucket = aws_s3_bucket.</description>
+    </item>
     <item>
       <title>AWSのリソースをエミュレートするLocalstackでS3を使ってみる</title>
       <link>https://techblog.gadget-amphone.com/posts/localstack-s3-introduction/</link>
