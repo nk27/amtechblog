@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>localstack on あむ&#39;s TechBlog</title>
+    <link>https://techblog.gadget-amphone.com/tags/localstack/</link>
+    <description>Recent content in localstack on あむ&#39;s TechBlog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>jp-JA</language>
+    <lastBuildDate>Sun, 14 Jan 2024 21:41:08 +0900</lastBuildDate>
+    <atom:link href="https://techblog.gadget-amphone.com/tags/localstack/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>AWSのリソースをエミュレートするLocalstackでS3を使ってみる</title>
+      <link>https://techblog.gadget-amphone.com/posts/localstack-s3-introduction/</link>
+      <pubDate>Sun, 14 Jan 2024 21:41:08 +0900</pubDate>
+      <guid>https://techblog.gadget-amphone.com/posts/localstack-s3-introduction/</guid>
+      <description>はじめに 最近、AWSの認定資格の勉強をしています。アソシエイトレベルであれば参考書と演習問題で取得は可能ですが、それでは勉強する意味がないと思い、実際に手を動かして勉強することにしました。&#xA;しかし、AWSのリソースを使うためには、お金がかかります。そのため、ローカル環境でAWSのリソースをエミュレートすることができるLocalstackを使って勉強しようと考えました。&#xA;Local Stackとは 公式サイト：Localstack&#xA;前述した通り、LocalstackはAWSのリソースをエミュレートするためのツールです。Dockerコンテナとして提供されており、Dockerコンテナを起動することで、ローカル環境でAWSのリソースをエミュレートすることができます。&#xA;LocalStackには料金プランが存在します。無料プランと有料プランがあり、無料プランでは一部の機能が制限されています。 実は「Hobby Subscription」というプランが存在し、無料で有料プラン相当の機能を利用することができます。ただし、個人利用に限定されるため、利用規約を守ってご利用ください。&#xA;準備 LocalStackのインストール LocalStackのインストール方法は公式サイトに丁寧に記載があるため、そちらをご確認ください。&#xA;Localstackの起動 Localstackを起動するために、以下のコマンドを実行します。&#xA;localstack start 実装 CloudFormationの作成 Localstackを使ってS3バケットを作成するために、CloudFormationのテンプレートを作成します。CloudFormationは所謂IaC(Infrastructure as Code)のツールで、AWSのリソースをコードで管理することができます。テンプレートは、YAML形式で記述します。&#xA;# CloudFormationテンプレートのフォーマットバージョンを指定 AWSTemplateFormatVersion: &amp;#39;2010-09-09&amp;#39; # テンプレートの説明 Description: &amp;#39;S3 Bucket for HTML Hosting&amp;#39; # リソースの定義開始 Resources: # カスタム名（ここでは MyS3Bucket）でS3バケットリソースを定義 MyS3Bucket: Type: AWS::S3::Bucket # リソースのタイプ指定（S3バケット） Properties: # バケットに関するプロパティ AccessControl: PublicRead # バケットのアクセスコントロール（公開読み取り） WebsiteConfiguration: # ウェブサイトとしてのバケット設定 IndexDocument: index.html # インデックスドキュメントとして使用するファイル # スタックのデプロイ後に出力される情報 Outputs: BucketName: Description: &amp;#34;Name of S3 bucket&amp;#34; Value: !Ref MyS3Bucket # バケットの名前を出力 WebsiteURL: Description: &amp;#34;URL of the hosted website&amp;#34; Value: !</description>
+    </item>
+  </channel>
+</rss>

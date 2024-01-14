@@ -6,8 +6,36 @@
     <description>Recent content in Tags on あむ&#39;s TechBlog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>jp-JA</language>
-    <lastBuildDate>Sat, 13 Jan 2024 23:48:31 +0900</lastBuildDate>
+    <lastBuildDate>Sun, 14 Jan 2024 21:41:08 +0900</lastBuildDate>
     <atom:link href="https://techblog.gadget-amphone.com/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>aws</title>
+      <link>https://techblog.gadget-amphone.com/tags/aws/</link>
+      <pubDate>Sun, 14 Jan 2024 21:41:08 +0900</pubDate>
+      <guid>https://techblog.gadget-amphone.com/tags/aws/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>cloudformation</title>
+      <link>https://techblog.gadget-amphone.com/tags/cloudformation/</link>
+      <pubDate>Sun, 14 Jan 2024 21:41:08 +0900</pubDate>
+      <guid>https://techblog.gadget-amphone.com/tags/cloudformation/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>localstack</title>
+      <link>https://techblog.gadget-amphone.com/tags/localstack/</link>
+      <pubDate>Sun, 14 Jan 2024 21:41:08 +0900</pubDate>
+      <guid>https://techblog.gadget-amphone.com/tags/localstack/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>s3</title>
+      <link>https://techblog.gadget-amphone.com/tags/s3/</link>
+      <pubDate>Sun, 14 Jan 2024 21:41:08 +0900</pubDate>
+      <guid>https://techblog.gadget-amphone.com/tags/s3/</guid>
+      <description></description>
+    </item>
     <item>
       <title>ownership</title>
       <link>https://techblog.gadget-amphone.com/tags/ownership/</link>

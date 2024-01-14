@@ -2,22 +2,37 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://techblog.gadget-amphone.com/tags/ownership/</loc>
-    <lastmod>2024-01-13T23:48:31+09:00</lastmod>
+    <loc>https://techblog.gadget-amphone.com/tags/aws/</loc>
+    <lastmod>2024-01-14T21:41:08+09:00</lastmod>
+  </url><url>
+    <loc>https://techblog.gadget-amphone.com/posts/localstack-s3-introduction/</loc>
+    <lastmod>2024-01-14T21:41:08+09:00</lastmod>
+  </url><url>
+    <loc>https://techblog.gadget-amphone.com/tags/cloudformation/</loc>
+    <lastmod>2024-01-14T21:41:08+09:00</lastmod>
+  </url><url>
+    <loc>https://techblog.gadget-amphone.com/tags/localstack/</loc>
+    <lastmod>2024-01-14T21:41:08+09:00</lastmod>
   </url><url>
     <loc>https://techblog.gadget-amphone.com/posts/</loc>
+    <lastmod>2024-01-14T21:41:08+09:00</lastmod>
+  </url><url>
+    <loc>https://techblog.gadget-amphone.com/tags/s3/</loc>
+    <lastmod>2024-01-14T21:41:08+09:00</lastmod>
+  </url><url>
+    <loc>https://techblog.gadget-amphone.com/tags/</loc>
+    <lastmod>2024-01-14T21:41:08+09:00</lastmod>
+  </url><url>
+    <loc>https://techblog.gadget-amphone.com/</loc>
+    <lastmod>2024-01-14T21:41:08+09:00</lastmod>
+  </url><url>
+    <loc>https://techblog.gadget-amphone.com/tags/ownership/</loc>
     <lastmod>2024-01-13T23:48:31+09:00</lastmod>
   </url><url>
     <loc>https://techblog.gadget-amphone.com/tags/rust/</loc>
     <lastmod>2024-01-13T23:48:31+09:00</lastmod>
   </url><url>
     <loc>https://techblog.gadget-amphone.com/posts/rust-ownership/</loc>
-    <lastmod>2024-01-13T23:48:31+09:00</lastmod>
-  </url><url>
-    <loc>https://techblog.gadget-amphone.com/tags/</loc>
-    <lastmod>2024-01-13T23:48:31+09:00</lastmod>
-  </url><url>
-    <loc>https://techblog.gadget-amphone.com/</loc>
     <lastmod>2024-01-13T23:48:31+09:00</lastmod>
   </url><url>
     <loc>https://techblog.gadget-amphone.com/tags/css/</loc>

@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+        <title>AWSのリソースをエミュレートするLocalstackでS3を使ってみる - あむ&#39;s TechBlog</title>
+        <meta name="description" content="Localstackを使用してローカル環境でAWSのS3バケットを作成し、HTMLファイルをアップロードし、ブラウザで確認する手順を解説します。AWSのリソースをエミュレートするLocalstackの利用は、AWSの学習に非常に便利です。">
+        <meta name="twitter:title" content="AWSのリソースをエミュレートするLocalstackでS3を使ってみる - あむ&#39;s TechBlog">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/css/styles.css">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3632082460538665" crossorigin="anonymous"></script>
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:site" content="@gadget_amphone">
+    <meta name="twitter:description" content="AWSのリソースをエミュレートするLocalstackでS3を使ってみる">
+    <meta name="twitter:image" content="https://techblog.gadget-amphone.com//images/profile.jpg">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <script src="/js/main.js"></script>
+    <meta http-equiv="Content-Language" content="ja">
+    
+    <link rel="stylesheet" href="/css/single.css">
+
+</head>
+<body>
+    <header>
+        <nav>
+            <a class="title" href="/">あむ&#39;s TechBlog</a>
+            <a href="/about">About</a>  
+            <a href="/contact">Contact</a> 
+        </nav>
+    </header>
+
+    <main>
+        
+    
+        <div class="article-title-container">
+            <h1 class="article-title">AWSのリソースをエミュレートするLocalstackでS3を使ってみる</h1>
+            <div class="article-date">2024-01-14に公開</div>
+        </div>
+        <div class="content">
+            <div class="flex-container">
+                <div class="article">
+                    <p>※本ブログはアフィリエイトで収益を得ています</p>
+                    <div class="tags">
+                        
+                            <a href="/tags/localstack">
+                                <span class="tag">localstack</span>
+                            </a>
+                        
+                            <a href="/tags/aws">
+                                <span class="tag">aws</span>
+                            </a>
+                        
+                            <a href="/tags/s3">
+                                <span class="tag">s3</span>
+                            </a>
+                        
+                            <a href="/tags/cloudformation">
+                                <span class="tag">cloudformation</span>
+                            </a>
+                        
+                    </div>
+                    <div class="share-button">
+                        SNSシェア：
+                        <a href="https://twitter.com/share?ref_src=twsrc%5Etfw&text=AWS%e3%81%ae%e3%83%aa%e3%82%bd%e3%83%bc%e3%82%b9%e3%82%92%e3%82%a8%e3%83%9f%e3%83%a5%e3%83%ac%e3%83%bc%e3%83%88%e3%81%99%e3%82%8bLocalstack%e3%81%a7S3%e3%82%92%e4%bd%bf%e3%81%a3%e3%81%a6%e3%81%bf%e3%82%8b - %e3%81%82%e3%82%80%27s%20TechBlog" class="twitter-share-button" data-show-count="false">Tweet</a>
+                        <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                    </div>
+                    <div class="article-content"><h2 id="はじめに">はじめに</h2>
+<p>最近、AWSの認定資格の勉強をしています。アソシエイトレベルであれば参考書と演習問題で取得は可能ですが、それでは勉強する意味がないと思い、実際に手を動かして勉強することにしました。</p>
+<p>しかし、AWSのリソースを使うためには、お金がかかります。そのため、ローカル環境でAWSのリソースをエミュレートすることができるLocalstackを使って勉強しようと考えました。</p>
+<h2 id="local-stackとは">Local Stackとは</h2>
+<p>公式サイト：<a href="https://www.localstack.cloud/">Localstack</a></p>
+<p>前述した通り、LocalstackはAWSのリソースをエミュレートするためのツールです。Dockerコンテナとして提供されており、Dockerコンテナを起動することで、ローカル環境でAWSのリソースをエミュレートすることができます。</p>
+<p>LocalStackには料金プランが存在します。無料プランと有料プランがあり、無料プランでは一部の機能が制限されています。
+実は「Hobby Subscription」というプランが存在し、無料で有料プラン相当の機能を利用することができます。ただし、個人利用に限定されるため、利用規約を守ってご利用ください。</p>
+<h2 id="準備">準備</h2>
+<h3 id="localstackのインストール">LocalStackのインストール</h3>
+<p>LocalStackのインストール方法は<a href="https://docs.localstack.cloud/getting-started/installation/">公式サイト</a>に丁寧に記載があるため、そちらをご確認ください。</p>
+<h3 id="localstackの起動">Localstackの起動</h3>
+<p>Localstackを起動するために、以下のコマンドを実行します。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>localstack start
+</span></span></code></pre></div><h2 id="実装">実装</h2>
+<h3 id="cloudformationの作成">CloudFormationの作成</h3>
+<p>Localstackを使ってS3バケットを作成するために、CloudFormationのテンプレートを作成します。CloudFormationは所謂IaC(Infrastructure as Code)のツールで、AWSのリソースをコードで管理することができます。テンプレートは、YAML形式で記述します。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yml" data-lang="yml"><span style="display:flex;"><span><span style="color:#75715e"># CloudFormationテンプレートのフォーマットバージョンを指定</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">AWSTemplateFormatVersion</span>: <span style="color:#e6db74">&#39;2010-09-09&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># テンプレートの説明</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">Description</span>: <span style="color:#e6db74">&#39;S3 Bucket for HTML Hosting&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># リソースの定義開始</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">Resources</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e"># カスタム名（ここでは MyS3Bucket）でS3バケットリソースを定義</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">MyS3Bucket</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">Type</span>: <span style="color:#ae81ff">AWS::S3::Bucket </span> <span style="color:#75715e"># リソースのタイプ指定（S3バケット）</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">Properties</span>:            <span style="color:#75715e"># バケットに関するプロパティ</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">AccessControl</span>: <span style="color:#ae81ff">PublicRead </span> <span style="color:#75715e"># バケットのアクセスコントロール（公開読み取り）</span>
+</span></span><span style="display:flex;"><span>      <span style="color:#f92672">WebsiteConfiguration</span>:      <span style="color:#75715e"># ウェブサイトとしてのバケット設定</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">IndexDocument</span>: <span style="color:#ae81ff">index.html</span> <span style="color:#75715e"># インデックスドキュメントとして使用するファイル</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># スタックのデプロイ後に出力される情報</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">Outputs</span>:
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">BucketName</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">Description</span>: <span style="color:#e6db74">&#34;Name of S3 bucket&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">Value</span>: !<span style="color:#ae81ff">Ref MyS3Bucket        </span> <span style="color:#75715e"># バケットの名前を出力</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#f92672">WebsiteURL</span>:
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">Description</span>: <span style="color:#e6db74">&#34;URL of the hosted website&#34;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">Value</span>: !<span style="color:#ae81ff">GetAtt MyS3Bucket.WebsiteURL </span> <span style="color:#75715e"># ホステッドウェブサイトのURLを出力</span>
+</span></span></code></pre></div><h3 id="スタックの作成">スタックの作成</h3>
+<p>CloudFormationのテンプレートを使って、Localstack上にS3バケットを作成します。Localstackを起動している状態で、以下のコマンドを実行します。ファイル名は自分で作成したファイル名に合わせてください、</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>aws --endpoint-url<span style="color:#f92672">=</span>http://localhost:4566 cloudformation create-stack --stack-name my-stack --template-body file://<span style="color:#f92672">[</span>ファイル名<span style="color:#f92672">]</span>
+</span></span></code></pre></div><h3 id="スタックステータスの確認">スタックステータスの確認</h3>
+<p>スタックの作成が完了したら、スタックのステータスを確認します。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>aws --endpoint-url<span style="color:#f92672">=</span>http://localhost:4566 cloudformation describe-stacks --stack-name my-stack
+</span></span></code></pre></div><p>下記の結果が出ました。&ldquo;my-stack-mys3bucket-2a155b59&quot;というS3バケットの作成に成功しました。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span><span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;Stacks&#34;</span>: <span style="color:#f92672">[</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;StackId&#34;</span>: <span style="color:#e6db74">&#34;arn:aws:cloudformation:ap-northeast-1:000000000000:stack/my-stack/a88ac3ce&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;StackName&#34;</span>: <span style="color:#e6db74">&#34;my-stack&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;Description&#34;</span>: <span style="color:#e6db74">&#34;S3 Bucket for HTML Hosting&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;CreationTime&#34;</span>: <span style="color:#e6db74">&#34;2024-01-14T13:00:56.034000Z&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;LastUpdatedTime&#34;</span>: <span style="color:#e6db74">&#34;2024-01-14T13:00:56.034000Z&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;RollbackConfiguration&#34;</span>: <span style="color:#f92672">{}</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;StackStatus&#34;</span>: <span style="color:#e6db74">&#34;CREATE_COMPLETE&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;DisableRollback&#34;</span>: false,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;NotificationARNs&#34;</span>: <span style="color:#f92672">[]</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;Outputs&#34;</span>: <span style="color:#f92672">[</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#e6db74">&#34;OutputKey&#34;</span>: <span style="color:#e6db74">&#34;BucketName&#34;</span>,
+</span></span><span style="display:flex;"><span>                    <span style="color:#e6db74">&#34;OutputValue&#34;</span>: <span style="color:#e6db74">&#34;my-stack-mys3bucket-2a155b59&#34;</span>, <span style="color:#75715e"># ここがバケット名</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#e6db74">&#34;Description&#34;</span>: <span style="color:#e6db74">&#34;Name of S3 bucket&#34;</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">}</span>,
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>                    <span style="color:#e6db74">&#34;OutputKey&#34;</span>: <span style="color:#e6db74">&#34;WebsiteURL&#34;</span>,
+</span></span><span style="display:flex;"><span>                    <span style="color:#e6db74">&#34;OutputValue&#34;</span>: <span style="color:#e6db74">&#34;http://my-stack-mys3bucket-2a155b59.s3-website.localhost.localstack.cloud:4566&#34;</span>,
+</span></span><span style="display:flex;"><span>                    <span style="color:#e6db74">&#34;Description&#34;</span>: <span style="color:#e6db74">&#34;URL of the hosted website&#34;</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">]</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;Tags&#34;</span>: <span style="color:#f92672">[]</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;EnableTerminationProtection&#34;</span>: false,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;DriftInformation&#34;</span>: <span style="color:#f92672">{</span>
+</span></span><span style="display:flex;"><span>                <span style="color:#e6db74">&#34;StackDriftStatus&#34;</span>: <span style="color:#e6db74">&#34;NOT_CHECKED&#34;</span>
+</span></span><span style="display:flex;"><span>            <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#f92672">}</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">}</span>
+</span></span></code></pre></div><h3 id="htmlファイルをs3にアップロードする">HTMLファイルをS3にアップロードする</h3>
+<p>S3バケットにHTMLファイルをアップロードします。今回は下記のHTMLファイルをアップロードします。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span><span style="color:#75715e">&lt;!DOCTYPE html&gt;</span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">html</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">head</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">title</span>&gt;Hello World Page&lt;/<span style="color:#f92672">title</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">head</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">body</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">h1</span>&gt;Hello World!&lt;/<span style="color:#f92672">h1</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">p</span>&gt;This is a simple HTML page saying &#34;Hello World&#34;.&lt;/<span style="color:#f92672">p</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">body</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">html</span>&gt;
+</span></span></code></pre></div><p>アップロードするために、下記のコマンドを実行します。バケット名は自分の環境に合わせて変更してください。</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>aws --endpoint-url<span style="color:#f92672">=</span>http://localhost:4566 s3 cp index.html s3://<span style="color:#f92672">[</span>バケット名<span style="color:#f92672">]</span>/
+</span></span></code></pre></div><h3 id="ブラウザで確認する">ブラウザで確認する</h3>
+<p>S3バケットにアップロードしたHTMLファイルをブラウザで確認します。ブラウザで下記のURLにアクセスします。バケット名は自分のものに合わせて変更してください。</p>
+<blockquote>
+<p>http://localhost:4566/[バケット名]/index.html</p>
+</blockquote>
+<p>下記のように表示されれば成功です。
+<img src="/images/localstack-s3-introduction/website.png" alt="Example Image"></p>
+<h2 id="まとめ">まとめ</h2>
+<p>Localstackを使って、ローカル環境でS3バケットを作成し、HTMLファイルをアップロードし、ブラウザで確認することができました。Localstackを使うことで、AWSのリソースをエミュレートすることができるため、AWSの勉強をする際には非常に便利です。</p>
+</div>
+                </div>
+                <div class="right-sidebar">
+                    <div class="profile">
+    <h2>自己紹介</h2>
+    <div class="profile-image-container">
+        <img src="https://techblog.gadget-amphone.com/images/profile.jpg" alt="自己紹介画像" class="profile-image" />
+    </div>
+    <p>Twitterアカウント  <a href="https://twitter.com/gadget_amphone">@gadget_amphone</a><br>
+        サイト運営者のあむです<br>
+        アプリケーションエンジニアとして働いています<br>
+        本ブログでは自分が学んだことを備忘録としてまとめていく方針です<br>
+    </p>
+</div>
+
+
+                    <h2>目次</h2>
+                    <div class="table-of-contents">
+                        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#はじめに">はじめに</a></li>
+    <li><a href="#local-stackとは">Local Stackとは</a></li>
+    <li><a href="#準備">準備</a>
+      <ul>
+        <li><a href="#localstackのインストール">LocalStackのインストール</a></li>
+        <li><a href="#localstackの起動">Localstackの起動</a></li>
+      </ul>
+    </li>
+    <li><a href="#実装">実装</a>
+      <ul>
+        <li><a href="#cloudformationの作成">CloudFormationの作成</a></li>
+        <li><a href="#スタックの作成">スタックの作成</a></li>
+        <li><a href="#スタックステータスの確認">スタックステータスの確認</a></li>
+        <li><a href="#htmlファイルをs3にアップロードする">HTMLファイルをS3にアップロードする</a></li>
+        <li><a href="#ブラウザで確認する">ブラウザで確認する</a></li>
+      </ul>
+    </li>
+    <li><a href="#まとめ">まとめ</a></li>
+  </ul>
+</nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+
+    </main>
+
+    <footer class="site-footer">
+        <p>© 2024 あむ&#39;s TechBlog</p>
+    </footer>
+</body>
+</html>
