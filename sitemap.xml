@@ -3,30 +3,36 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://techblog.gadget-amphone.com/tags/aws/</loc>
-    <lastmod>2024-01-15T01:04:11+09:00</lastmod>
+    <lastmod>2024-01-20T14:31:17+09:00</lastmod>
+  </url><url>
+    <loc>https://techblog.gadget-amphone.com/tags/ec2/</loc>
+    <lastmod>2024-01-20T14:31:17+09:00</lastmod>
+  </url><url>
+    <loc>https://techblog.gadget-amphone.com/tags/localstack/</loc>
+    <lastmod>2024-01-20T14:31:17+09:00</lastmod>
+  </url><url>
+    <loc>https://techblog.gadget-amphone.com/posts/localstack-ec2/</loc>
+    <lastmod>2024-01-20T14:31:17+09:00</lastmod>
+  </url><url>
+    <loc>https://techblog.gadget-amphone.com/posts/</loc>
+    <lastmod>2024-01-20T14:31:17+09:00</lastmod>
+  </url><url>
+    <loc>https://techblog.gadget-amphone.com/tags/s3/</loc>
+    <lastmod>2024-01-20T14:31:17+09:00</lastmod>
+  </url><url>
+    <loc>https://techblog.gadget-amphone.com/tags/</loc>
+    <lastmod>2024-01-20T14:31:17+09:00</lastmod>
+  </url><url>
+    <loc>https://techblog.gadget-amphone.com/tags/terraform/</loc>
+    <lastmod>2024-01-20T14:31:17+09:00</lastmod>
+  </url><url>
+    <loc>https://techblog.gadget-amphone.com/</loc>
+    <lastmod>2024-01-20T14:31:17+09:00</lastmod>
   </url><url>
     <loc>https://techblog.gadget-amphone.com/tags/iac/</loc>
     <lastmod>2024-01-15T01:04:11+09:00</lastmod>
   </url><url>
-    <loc>https://techblog.gadget-amphone.com/tags/localstack/</loc>
-    <lastmod>2024-01-15T01:04:11+09:00</lastmod>
-  </url><url>
-    <loc>https://techblog.gadget-amphone.com/posts/</loc>
-    <lastmod>2024-01-15T01:04:11+09:00</lastmod>
-  </url><url>
-    <loc>https://techblog.gadget-amphone.com/tags/s3/</loc>
-    <lastmod>2024-01-15T01:04:11+09:00</lastmod>
-  </url><url>
-    <loc>https://techblog.gadget-amphone.com/tags/</loc>
-    <lastmod>2024-01-15T01:04:11+09:00</lastmod>
-  </url><url>
-    <loc>https://techblog.gadget-amphone.com/tags/terraform/</loc>
-    <lastmod>2024-01-15T01:04:11+09:00</lastmod>
-  </url><url>
     <loc>https://techblog.gadget-amphone.com/posts/localstack-s3-terraform-introduction/</loc>
-    <lastmod>2024-01-15T01:04:11+09:00</lastmod>
-  </url><url>
-    <loc>https://techblog.gadget-amphone.com/</loc>
     <lastmod>2024-01-15T01:04:11+09:00</lastmod>
   </url><url>
     <loc>https://techblog.gadget-amphone.com/posts/localstack-s3-introduction/</loc>

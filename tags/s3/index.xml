@@ -6,8 +6,15 @@
     <description>Recent content in s3 on あむ&#39;s TechBlog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>jp-JA</language>
-    <lastBuildDate>Mon, 15 Jan 2024 01:04:11 +0900</lastBuildDate>
+    <lastBuildDate>Sat, 20 Jan 2024 14:31:17 +0900</lastBuildDate>
     <atom:link href="https://techblog.gadget-amphone.com/tags/s3/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>LocalStackでEC2を構築する</title>
+      <link>https://techblog.gadget-amphone.com/posts/localstack-ec2/</link>
+      <pubDate>Sat, 20 Jan 2024 14:31:17 +0900</pubDate>
+      <guid>https://techblog.gadget-amphone.com/posts/localstack-ec2/</guid>
+      <description>はじめに 今回はLocalStack上でTerraformを使いEC2を構築する手順をまとめます。&#xA;手順 EC2インスタンス用のAMI作成 LocalStackでEC2を使おうとTerraformのコードを書いてたところ、「AMI」を指定する必要があることに気づきました。どうやらAMIは自分で用意する必要があるようで、正解に辿り着くのに時間がかかってしまったため、備忘録がてら手順をまとめます。&#xA;AMIの元になるdocker imageのダウンロード 下記コマンドを使い、UbuntuのLunarをダウンロードします。&#xA;docker pull ubuntu:lunar AMIのタグ付け LocalStack docs | Base Images https://docs.localstack.cloud/user-guide/aws/elastic-compute-cloud/#base-images&#xA;上記公式サイトにある通り、LocalStackでAMIとして扱えるよう、下記コマンドを実行します。これで使えるようになりました。&#xA;docker tag ubuntu:lunar localstack-ec2/ubuntu-focal-ami:ami-000001 Terraformのコードを書く コードを下記の通りです。&#xA;# AWSプロバイダの設定。LocalStackを指すためにカスタムエンドポイントを使用。 provider &amp;#34;aws&amp;#34; { region = &amp;#34;us-east-1&amp;#34; # 使用するリージョンを指定 access_key = &amp;#34;mock_access_key&amp;#34; # LocalStackではダミーのアクセスキーを使用 secret_key = &amp;#34;mock_secret_key&amp;#34; # LocalStackではダミーのシークレットキーを使用 skip_credentials_validation = true # ローカル環境のため、クレデンシャル検証をスキップ skip_metadata_api_check = true # メタデータAPIのチェックをスキップ skip_requesting_account_id = true # アカウントIDのリクエストをスキップ endpoints { ec2 = &amp;#34;http://localhost:4566&amp;#34; # LocalStackのエンドポイント設定 } } # VPCリソースの作成 resource &amp;#34;aws_vpc&amp;#34; &amp;#34;example_vpc&amp;#34; { cidr_block = &amp;#34;10.</description>
+    </item>
     <item>
       <title>TerraformでLocalStack上にS3ウェブサイトを構築する</title>
       <link>https://techblog.gadget-amphone.com/posts/localstack-s3-terraform-introduction/</link>
